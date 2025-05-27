@@ -1,95 +1,59 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react";
+import styles from "./Portfolio.module.scss";
 
-export default function Home() {
+const Portfolio: React.FC = () => {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1>Anit Dhadve</h1>
+        <p>Frontend Developer | React & Next.js</p>
+        <nav>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      <section id="projects" className={styles.section}>
+        <h2>Projects</h2>
+        <div className={styles.projectsGrid}>
+          <div className={styles.card}>
+            <img src="/project1.png" alt="Project 1" />
+            <h3>Reacto Inventory</h3>
+            <p>Inventory management system with JWT-based SSO.</p>
+          </div>
+          <div className={styles.card}>
+            <img src="/project2.png" alt="Project 2" />
+            <h3>PavatiBook</h3>
+            <p>Billing and expense tracker for dairy products.</p>
+          </div>
         </div>
-      </main>
+      </section>
+
+      <section id="about" className={styles.section}>
+        <h2>About Me</h2>
+        <p>
+          I’m a passionate frontend developer with 3 years of experience working
+          with React, Next.js, TypeScript, and SCSS. I build scalable and
+          user-friendly web apps.
+        </p>
+      </section>
+
+      <section id="contact" className={styles.section}>
+        <h2>Contact</h2>
+        <form className={styles.form}>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" required />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
       <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <p>&copy; {new Date().getFullYear()} Anit. All rights reserved.</p>
       </footer>
     </div>
   );
-}
+};
+
+export default Portfolio;
