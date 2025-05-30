@@ -47,6 +47,15 @@ a {
   text-decoration: none;
 }
 
+@font-face {
+  font-family: montHeavy;
+  src: url(/public/fonts/Mont-HeavyDEMO.otf);
+}
+
+@font-face {
+  font-family: montLight;
+  src: url(/public/fonts/Mont-LightDEMO.otf);
+}
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -163,7 +163,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .skillCard {
@@ -200,11 +200,51 @@
   padding: 3.2rem 2rem; // Added padding
 }
 
+.projectsSectionPage {
+  background-color: var(--light-color);
+  padding: 2rem 2rem; // Added padding
+}
+
+.projectsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // Add this to vertically center align
+  flex-wrap: wrap; // Allow items to wrap on mobile
+  gap: 1rem; // Add gap between items
+}
+
+.viewAllButton {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 35px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap; // Prevent text from wrapping
+  display: inline-block; // Ensure proper spacing
+
+  &:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%; // Full width on mobile
+    text-align: center; // Center text
+    margin-top: 1rem; // Add some space above
+    order: 1; // Move below the heading
+  }
+}
+
 .projectsGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -582,7 +622,7 @@
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 8px;
   font-family: "Poppins", sans-serif;
   font-size: 1rem;

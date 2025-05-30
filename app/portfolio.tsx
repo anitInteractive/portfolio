@@ -13,6 +13,11 @@ const Portfolio: React.FC = () => {
     triggerOnce: false,
   });
 
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
   useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -122,14 +127,22 @@ const Portfolio: React.FC = () => {
 
       {/* Projects Section */}
       <section id="projects" className={styles.projectsSection}>
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          Featured Projects
-        </motion.h2>
+        <div className={styles.projectsHeader}>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Featured Projects
+          </motion.h2>
+          {!isMobile && (
+            <a href="/projects" className={styles.viewAllButton}>
+              View All Projects
+            </a>
+          )}
+        </div>
+
         <div className={styles.projectsGrid}>
           <motion.div
             className={styles.projectCard}
@@ -201,6 +214,7 @@ const Portfolio: React.FC = () => {
             </div>
           </motion.div>
         </div>
+        {isMobile && <a className={styles.viewAllButton}>View All</a>}
       </section>
 
       {/* Experience Section */}
