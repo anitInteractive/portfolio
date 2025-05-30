@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Poppins,
+  Rubik,
+  Inter,
+  Raleway,
+} from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -9,6 +16,24 @@ const geistSans = Geist({
 
 const poppins = Poppins({
   variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["100", "400", "500", "600", "800"],
+});
+
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "800"],
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["100", "400", "500", "600", "800"],
+});
+
+const raleway = Raleway({
+  variable: "--font-raleway",
   subsets: ["latin"],
   weight: ["100", "400", "500", "600", "800"],
 });
@@ -30,7 +55,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable}`}>{children}</body>
+      <body
+        className={`${poppins.variable} ${geistMono.variable} ${rubik.variable} ${inter.variable}  ${raleway.variable}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
