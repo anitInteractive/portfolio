@@ -1,12 +1,18 @@
 // portfolio.tsx
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Portfolio.module.scss";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { smoothScroll } from "./utils/utility";
+import { projectArray, smoothScroll } from "./utils/utility";
+import { ThreeDots } from "react-loader-spinner";
+import { useRouter } from "next/navigation";
+import Experience from "./components/experience";
+import Contact from "./components/contact";
 
 const Portfolio: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -18,6 +24,20 @@ const Portfolio: React.FC = () => {
       navigator.userAgent
     );
 
+  const handleClick = async () => {
+    setLoading(true);
+    try {
+      await new Promise<void>((resolve) => {
+        router.push("/projects");
+        // Manually resolve after reasonable delay
+        setTimeout(resolve, 1000); // Adjust timeout as needed
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const projectArrayCopy = projectArray.slice(0, 2);
   useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -137,135 +157,64 @@ const Portfolio: React.FC = () => {
             Featured Projects
           </motion.h2>
           {!isMobile && (
-            <a href="/projects" className={styles.viewAllButton}>
-              View All Projects
-            </a>
+            <button
+              className={styles.viewAllButton}
+              onClick={handleClick}
+              disabled={loading}
+            >
+              {loading ? (
+                <div style={{ display: "grid", justifyItems: "center" }}>
+                  <ThreeDots height={8} color="white" />
+                </div>
+              ) : (
+                "View All Projects"
+              )}
+            </button>
           )}
         </div>
 
         <div className={styles.projectsGrid}>
-          <motion.div
-            className={styles.projectCard}
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-          >
-            <div className={styles.projectImage}>
-              <img src="/images/godrej.png" alt="Godrej GPL Alchemy" />
-              <div className={styles.projectOverlay}>
-                <a
-                  href="https://gplalchemy-cr.nimapinfotech.com/login"
-                  className={styles.projectLink}
-                  target="blank"
-                >
-                  View Project
-                </a>
-              </div>
-            </div>
-            <div className={styles.projectInfo}>
-              <h3>Godrej GPL Alchemy</h3>
-              <p>
-                Talent development program for employees of Godrej Properties.
-              </p>
-              <div className={styles.projectTech}>
-                <span>React</span>
-                <span>Redux toolkit</span>
-                <span>SASS</span>
-                <span>Axios</span>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className={styles.projectCard}
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -10 }}
-          >
-            <div className={styles.projectImage}>
-              <img src="/images/iifl.png" alt="IIFL Wealth" />
-              <div className={styles.projectOverlay}>
-                <a
-                  href="https://www.360.one/wealth/home"
-                  className={styles.projectLink}
-                  target="blank"
-                >
-                  View Project
-                </a>
-              </div>
-            </div>
-            <div className={styles.projectInfo}>
-              <h3>IIFL Wealth</h3>
-              <p>
-                Wealth management platform that provides investment advisory
-                services, asset management.
-              </p>
-              <div className={styles.projectTech}>
-                <span>React</span>
-                <span>Redux Toolkit</span>
-                <span>Chart.js</span>
-                <span>SASS</span>
-                <span>Axios</span>
-              </div>
-            </div>
-          </motion.div>
+          {projectArrayCopy.map((project) => {
+            return (
+              <motion.div
+                className={styles.projectCard}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+                key={project.projectName}
+              >
+                <div className={styles.projectImage}>
+                  <img src={project.srcImg} alt={project.projectName} />
+                  <div className={styles.projectOverlay}>
+                    <a
+                      href={project.redirectUrl}
+                      className={styles.projectLink}
+                      target="blank"
+                    >
+                      View Project
+                    </a>
+                  </div>
+                </div>
+                <div className={styles.projectInfo}>
+                  <h3>{project.projectName}</h3>
+                  <p>{project.description}</p>
+                  <div className={styles.projectTech}>
+                    {project.stacks.map((stack) => {
+                      return <span key={stack}>{stack}</span>;
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
-        {isMobile && <a className={styles.viewAllButton}>View All</a>}
+        {isMobile && <a className={styles.viewAllButton}>View All Projects</a>}
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className={styles.experienceSection}>
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          Professional Experience
-        </motion.h2>
-        <div className={styles.timeline}>
-          <motion.div
-            className={styles.timelineItem}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <div className={styles.timelineContent}>
-              <h3>Associate Software Developer</h3>
-              <span className={styles.company}>Interactive Avenues(IPG).</span>
-              <span className={styles.date}>2025 - Present</span>
-              <ul>
-                <li>Developed and maintained 10+ React applications</li>
-                <li>Improved performance by 40% through code optimization</li>
-                <li>Led UI/UX redesign for flagship product</li>
-              </ul>
-            </div>
-          </motion.div>
-          <motion.div
-            className={styles.timelineItem}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <div className={styles.timelineContent}>
-              <h3>Junior Web Developer</h3>
-              <span className={styles.company}>Digital Creations</span>
-              <span className={styles.date}>2019 - 2021</span>
-              <ul>
-                <li>Built responsive websites using modern CSS techniques</li>
-                <li>Collaborated on React component library</li>
-                <li>Implemented accessibility best practices</li>
-              </ul>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <Experience />
 
       {/* About Section */}
       <section id="about" className={styles.aboutSection}>
@@ -353,74 +302,16 @@ const Portfolio: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={styles.contactSection}>
-        <motion.div
-          className={styles.contactContainer}
-          ref={ref}
-          initial="hidden"
-          animate={controls}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 50 },
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className={styles.contactInfo}>
-            <h2 className="sectionTitle ">Get In Touch</h2>
-            <p>
-              Have a project in mind or want to discuss potential opportunities?
-            </p>
-            <div className={styles.contactDetails}>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📧</span>
-                <span>anit.dhadve@gmail.com</span>
-                {/* <span>anit.dhadve17@gmail.com</span> */}
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactIcon}>📱</span>
-                <span>+91 9769007252</span>
-              </div>
-              <div className={styles.contactItem}>
-                <img src="https://img.icons8.com/color/24/marker--v1.png" />
-                <span>Mumbai, India</span>
-              </div>
-            </div>
-            <div className={styles.socialLinks}>
-              <a href="#" className={styles.socialLink}>
-                GitHub
-              </a>
-              <a href="#" className={styles.socialLink}>
-                LinkedIn
-              </a>
-              <a href="#" className={styles.socialLink}>
-                Twitter
-              </a>
-            </div>
-          </div>
-          <form className={styles.contactForm}>
-            <input type="text" placeholder="Your Name" required />
-            <input type="email" placeholder="Your Email" required />
-            <input type="text" placeholder="Subject" />
-            <textarea placeholder="Your Message" rows={5} required />
-            <motion.button
-              className={styles.submitButton}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Send Message
-            </motion.button>
-          </form>
-        </motion.div>
-      </section>
+      <Contact />
 
       <footer className={styles.footer}>
         <p>
           &copy; {new Date().getFullYear()} Anit Dhadve. All rights reserved.
         </p>
-        <div className={styles.footerLinks}>
+        {/* <div className={styles.footerLinks}>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-        </div>
+        </div> */}
       </footer>
     </div>
   );

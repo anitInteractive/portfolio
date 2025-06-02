@@ -220,7 +220,10 @@
   padding: 0.8rem 1.5rem;
   border-radius: 35px;
   font-size: 1rem;
+  width: 178.41px;
+  height: 48.92px;
   font-weight: 500;
+  font-family: var(--font-poppins);
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
@@ -468,7 +471,7 @@
 
 .testimonialsContainer {
   max-width: 800px;
-  margin: 3rem auto 0;
+  margin: 2rem auto 0;
 }
 
 .testimonialCard {
@@ -596,6 +599,10 @@
   flex-direction: column;
   gap: 1rem;
 
+  &_formField {
+    display: grid;
+  }
+
   input,
   textarea {
     padding: 1rem;
@@ -616,6 +623,10 @@
     resize: vertical;
     min-height: 150px;
   }
+}
+
+.errorMessage {
+  color: orangered;
 }
 
 .submitButton {
