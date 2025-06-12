@@ -20,8 +20,7 @@ export const projectArray = [
   {
     projectName: "Choice Connect",
     srcImg: "/images/choice.png",
-    redirectUrl:
-      "https://sso.choiceconnect.in/login/identifier?state=2c7ae1f44da19e6f8e6575587c499bfa1277e52d7f83e9fc29667380347eb6f6",
+    redirectUrl: "https://choiceconnect.in/home",
     description:
       " A platform that aims to make financial services more accessible and profitable for both users and financial advisors (CBAs).",
     stacks: ["NextJs", "Typescript", "React-Hooks", "SASS", "Axios"],

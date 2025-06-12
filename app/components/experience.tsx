@@ -23,13 +23,22 @@ const Experience = () => {
           viewport={{ once: true }}
         >
           <div className={styles.timelineContent}>
-            <h3>Associate Software Developer</h3>
+            <h3>Associate Software Engineer</h3>
             <span className={styles.company}>Interactive Avenues(IPG)</span>
             <span className={styles.date}>2025 - Present</span>
             <ul>
-              <li>Developed and maintained 10+ React applications</li>
-              <li>Improved performance by 40% through code optimization</li>
-              <li>Led UI/UX redesign for flagship product</li>
+              <li>
+                Worked on multiple enterprise-level projects, including Royal
+                Enfield, BOB Card, and Philips.
+              </li>
+              <li>
+                Developed high-performance, SEO-friendly web applications using
+                Next.js with server-side rendering (SSR).{" "}
+              </li>
+              <li>
+                Actively participated in agile sprints, code reviews, and
+                delivered features on schedule.
+              </li>
             </ul>
           </div>
         </motion.div>
@@ -41,13 +50,22 @@ const Experience = () => {
           viewport={{ once: true }}
         >
           <div className={styles.timelineContent}>
-            <h3>Assosiate Software Developer</h3>
+            <h3>Associate Software Engineer</h3>
             <span className={styles.company}>Choice Techlab(Choice India)</span>
             <span className={styles.date}>2023 - 2024</span>
             <ul>
-              <li>Built responsive websites using modern CSS techniques</li>
-              <li>Collaborated on React component library</li>
-              <li>Implemented accessibility best practices</li>
+              <li>
+                Worked on the development of a Choice Connect application using
+                ReactJs/NextJs and TypeScript.
+              </li>
+              <li>
+                Improved application performance by optimizing REST API calls
+                and reducing load times in page speed.{" "}
+              </li>
+              <li>
+                Collaborated with cross-functional teams to ensure timely
+                delivery of project milestones.
+              </li>
             </ul>
           </div>
         </motion.div>
@@ -59,13 +77,19 @@ const Experience = () => {
           viewport={{ once: true }}
         >
           <div className={styles.timelineContent}>
-            <h3>Assosiate Software Developer</h3>
+            <h3>Associate Software Engineer</h3>
             <span className={styles.company}>Nimap Infotech</span>
             <span className={styles.date}>2021 - 2023</span>
             <ul>
-              <li>Built responsive websites using modern CSS techniques</li>
-              <li>Collaborated on React component library</li>
-              <li>Implemented accessibility best practices</li>
+              <li>
+                I contributed to multiple high-impact projects including Godrej
+                GPL Alchemy, IIFL Wealth, and C2Hire.
+              </li>
+              <li>
+                I led the development of the Godrej GPL Alchemy platform from
+                scratch using React.js, Redux, react-hook-form, and Axios,
+                focusing on building scalable and maintainable architecture.
+              </li>
             </ul>
           </div>
         </motion.div>

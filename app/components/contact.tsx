@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useForm } from "react-hook-form";
 import styles from "../portfolio.module.scss";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const controls = useAnimation();
@@ -20,6 +21,7 @@ const Contact = () => {
 
   const onSubmit = (data: any) => {
     console.log("Form submitted:", data);
+    toast.success("Message Submitted!!");
     // Add your form submission logic here (e.g., API call)
     reset();
   };

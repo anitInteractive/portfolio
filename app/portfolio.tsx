@@ -9,6 +9,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { useRouter } from "next/navigation";
 import Experience from "./components/experience";
 import Contact from "./components/contact";
+import { Toaster } from "react-hot-toast";
 
 const Portfolio: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -46,6 +47,21 @@ const Portfolio: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toastOptions={{
+          className: "",
+          duration: 5000,
+          style: {
+            background: "#363636",
+            color: "#fff",
+          },
+        }}
+      />
       {/* Hero Section */}
       <header className={styles.hero}>
         <motion.div
